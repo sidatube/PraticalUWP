@@ -20,6 +20,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
@@ -32,10 +33,24 @@
 
             <TextBox x:Name="Product" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" PlaceholderText="Product..." TextWrapping="Wrap" FontSize="18"/>
             <TextBox x:Name="Description" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" PlaceholderText="Description..." TextWrapping="Wrap" FontSize="18"/>
-            <TextBox x:Name="Img" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" PlaceholderText="Description..." TextWrapping="Wrap" FontSize="18"/>
-            <!--<ComboBox  x:Name="Imagebox" VerticalAlignment="Center"   Grid.Row="2" Grid.Column="1" Height="40" Width="296" 
-          ItemsSource="{x:Bind Image}" DisplayMemberPath="Source"/>-->
+            <ComboBox  x:Name="Imagebox" VerticalAlignment="Center" Loaded="RenderImg"  Grid.Row="2" Grid.Column="1" Height="100" Width="296" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="model:ImgList">
+                        <ComboBoxItem Background="Orange">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Width="100" Source="{x:Bind img}"/>
+                                <TextBlock Grid.Column="1" FontSize="18" VerticalAlignment="Center" Text="{x:Bind name}"/>
+                            </Grid>
+                        </ComboBoxItem>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Button Content="Submit" Click="Button_Click" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBlock x:Name="tete" Text="Submit"  Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
 
 
         </Grid>

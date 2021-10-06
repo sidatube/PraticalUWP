@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PraticalUWP.Model
 {
-    class PraticalModel
+    public class PraticalModel
     {
         public string img { set; get; }
         public string product { set; get; }

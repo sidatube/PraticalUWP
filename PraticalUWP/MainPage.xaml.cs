@@ -23,30 +23,38 @@ namespace PraticalUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        List<string> Image = new List<string>();
         public MainPage()
         {
             this.InitializeComponent();
-            RenderImg();
         }
 
-        public void RenderImg()
+        public void RenderImg(object sender, RoutedEventArgs e)
+
         {
-            Image.Add("/Assets/726222.jpg");
-            Image.Add("/Assets/725355.png");
-            Image.Add("/Assets/713053.png");
-            Image.Add("/Assets/1008472.png");
-            Image.Add("/Assets/733254.png");
+            DirectoryInfo dir = new DirectoryInfo(@"./Assets/");
+
+            FileInfo[] files = dir.GetFiles();
+
+
+
+            foreach (FileInfo file in files)
+            {
+                var FileName = Path.GetFileName(file.ToString());
+                //Imagebox.Items.Add("/Assets/" + FileName);
+                Imagebox.Items.Add(new ImgList() {name = FileName, img = "/Assets/" + FileName });
+
+            }
         }
+
 
         private void GV_Loaded(object sender, RoutedEventArgs e)
         {
             GV.Items.Add(new PraticalModel()
             {
-                img = "/Assets/726222.jpg",
+                img = "/Assets/733254.png",
                 product = "abc",
                 description = "Test Test Test Test"
-            });            
+            });
             GV.Items.Add(new PraticalModel()
             {
                 img = "/Assets/725355.png",
@@ -63,16 +71,25 @@ namespace PraticalUWP
 
         }
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            tete.Text = Imagebox.SelectedItem.ToString();
             var inputItem = new PraticalModel()
             {
-                img = Img.Text,
+                img = Imagebox.SelectedItem.ToString(),
                 product = Product.Text,
                 description = Description.Text
-              
+
             };
             GV.Items.Add(inputItem);
+            //Product.Text = null;
+            //Description.Text = null;
+            //Imagebox.SelectedItem = null;
+
+        }
+        private void ComboBoxItem_Tapped(object sender, TappedRoutedEventArgs e)
+        {
 
         }
     }
