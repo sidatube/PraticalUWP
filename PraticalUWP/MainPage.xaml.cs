@@ -77,15 +77,15 @@ namespace PraticalUWP
             tete.Text = Imagebox.SelectedItem.ToString();
             var inputItem = new PraticalModel()
             {
-                img = Imagebox.SelectedItem.ToString(),
+                img = (Imagebox.SelectedItem as ImgList).img,
                 product = Product.Text,
                 description = Description.Text
 
             };
             GV.Items.Add(inputItem);
-            //Product.Text = null;
-            //Description.Text = null;
-            //Imagebox.SelectedItem = null;
+            Product.Text = "";
+            Description.Text = "";
+            Imagebox.SelectedItem = null;
 
         }
         private void ComboBoxItem_Tapped(object sender, TappedRoutedEventArgs e)

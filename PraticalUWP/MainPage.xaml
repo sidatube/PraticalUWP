@@ -58,8 +58,8 @@
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="model:PraticalModel">
                             <GridViewItem>
-                                <StackPanel Width="250" Padding="20,0,20,0">
-                                    <Image Width="250" Source="{x:Bind img }"/>
+                                <StackPanel Width="500" Padding="20,0,20,0">
+                                    <Image Width="500" Source="{x:Bind img }"/>
                                     <TextBlock  Text="{x:Bind product}"/>
                                     <TextBlock Text="{x:Bind description}"/>
                                 </StackPanel>
