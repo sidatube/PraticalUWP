@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="PraticalUWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PraticalUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:PraticalUWP.Model"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Padding="30,0,0,0" Grid.Row="0" FontSize="18" VerticalAlignment="Center" Grid.Column="0" Text="Product:"/>
+            <TextBlock Padding="30,0,0,0" Grid.Row="1" FontSize="18" VerticalAlignment="Center" Grid.Column="0" Text="Description:"/>
+            <TextBlock Padding="30,0,0,0" Grid.Row="2" FontSize="18" VerticalAlignment="Center" Grid.Column="0" Text="Image:"/>
+
+            <TextBox x:Name="Product" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" PlaceholderText="Product..." TextWrapping="Wrap" FontSize="18"/>
+            <TextBox x:Name="Description" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" PlaceholderText="Description..." TextWrapping="Wrap" FontSize="18"/>
+            <TextBox x:Name="Img" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" PlaceholderText="Description..." TextWrapping="Wrap" FontSize="18"/>
+            <!--<ComboBox  x:Name="Imagebox" VerticalAlignment="Center"   Grid.Row="2" Grid.Column="1" Height="40" Width="296" 
+          ItemsSource="{x:Bind Image}" DisplayMemberPath="Source"/>-->
+            <Button Content="Submit" Click="Button_Click" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+
+
+        </Grid>
+        <Grid Grid.Row="1" >
+            <ScrollViewer>
+                <GridView Padding="50,50,0,0" x:Name="GV" Loaded="GV_Loaded">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="model:PraticalModel">
+                            <GridViewItem>
+                                <StackPanel Width="250" Padding="20,0,20,0">
+                                    <Image Width="250" Source="{x:Bind img }"/>
+                                    <TextBlock  Text="{x:Bind product}"/>
+                                    <TextBlock Text="{x:Bind description}"/>
+                                </StackPanel>
+                            </GridViewItem>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</Page>
